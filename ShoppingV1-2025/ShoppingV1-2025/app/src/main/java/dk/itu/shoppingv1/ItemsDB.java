@@ -9,7 +9,7 @@ public class ItemsDB {
     public ItemsDB() { }
 
     public String listItems() {
-        String r= "";
+        String r= "\n";
         for(Item i: ItemsDB)
             r= r+"\n Buy " + i.toString();
         return r;
@@ -26,5 +26,7 @@ public class ItemsDB {
         ItemsDB.add(new Item("milk", "Netto"));
         ItemsDB.add(new Item("bread", "bakery"));
         ItemsDB.add(new Item("butter", "Irma"));
+        ItemsDB.add(new Item("apple", "Rema"));
+        ItemsDB.add(new Item("orange", "Aldi"));
     }
 }

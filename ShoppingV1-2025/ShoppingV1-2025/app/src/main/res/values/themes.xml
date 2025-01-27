@@ -3,7 +3,7 @@
     <style name="Base.Theme.ShoppingV1" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimary">@color/blues</item>
         <item name="colorPrimaryVariant">@color/teal_900</item>
         <item name="colorOnPrimary">@color/black</item>
     </style>

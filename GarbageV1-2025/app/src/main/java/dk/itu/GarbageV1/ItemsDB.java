@@ -15,16 +15,26 @@ public class ItemsDB {
         return r;
     }
 
+public String findCategory(String item){
+
+        for (Item i:ItemsDB){
+            if (i.getWhat().equals(item))
+                return i.getWhere();
+        }
+        return "Not found";
+
+}
+
     // Will be used later
     public void addItem(String what, String where){
         ItemsDB.add(new Item(what, where));
     }
 
     public void fillItemsDB() {
-        ItemsDB.add(new Item("coffee", "Irma"));
-        ItemsDB.add(new Item("carrots", "Netto"));
-        ItemsDB.add(new Item("milk", "Netto"));
-        ItemsDB.add(new Item("bread", "bakery"));
-        ItemsDB.add(new Item("butter", "Irma"));
+        ItemsDB.add(new Item("Milk Carton", "Food"));
+        ItemsDB.add(new Item("Carrots", "Organic"));
+        ItemsDB.add(new Item("Can", "Metal"));
+        ItemsDB.add(new Item("Bottle", "Glass"));
+        ItemsDB.add(new Item("Plate", "Porcelain"));
     }
 }

@@ -2,27 +2,27 @@ package dk.itu.GarbageV2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class    ShoppingActivity extends AppCompatActivity {
+public class SortingActivity extends AppCompatActivity {
 
     //Shopping V1
 
     // Model: Database of items
-    private ItemsDB itemsDB;
+    private static ItemsDB itemsDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_item);
 
-        itemsDB= new ItemsDB();
+        itemsDB= ItemsDB.get();
         itemsDB.fillItemsDB();
-
 
         TextView items= findViewById(R.id.items);
         EditText sortInput= findViewById(R.id.find_item_to_sort);
@@ -48,5 +48,15 @@ public class    ShoppingActivity extends AppCompatActivity {
                 sortInput.setText("");
             }
         });
+
+        Button addItem= findViewById(R.id.add_new_item_button);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SortingActivity.this, AddItemActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

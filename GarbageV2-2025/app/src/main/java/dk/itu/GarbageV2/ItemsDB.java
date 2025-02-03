@@ -4,9 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsDB {
+    private static ItemsDB sItemsDB;
     private List<Item> ItemsDB= new ArrayList<>();
 
     public ItemsDB() { }
+
+    // Singleton pattern get implementation
+    public static ItemsDB get() {
+        if (sItemsDB == null) {
+            sItemsDB = new ItemsDB();
+        }
+        return sItemsDB;
+    }
 
     public String listItems() {
         String r= "";

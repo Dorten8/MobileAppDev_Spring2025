@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ShoppingV2" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/teal_900</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
+    <style name="Theme.ShoppingV2" parent="Base.Theme.ShoppingV2" />
+</resources>

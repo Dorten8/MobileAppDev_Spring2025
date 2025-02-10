@@ -6,22 +6,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class ItemsDB {
     private static ItemsDB sItemsDB;
 
-    private final HashMap<String, String> ItemsDB= new HashMap<String, String>();
+    private final HashMap<String, String> ItemsDB_map = new HashMap<String, String>();
 
     private static Context context;
 
-    private ItemsDB() throws IOException {
+    private ItemsDB(){
         if(context == null){
             throw new IllegalStateException("context must be set first!");
         }
         fillItemsDB(context, "garbage.txt");
+    }
+
+    public static void setContext(Context aContext) {
+        context = aContext;
     }
 
     // Singleton pattern get implementation
@@ -30,43 +31,44 @@ public class ItemsDB {
         return sItemsDB;
     }
 
+    public HashMap<String, String> getItemsDB_map() {
+        return ItemsDB_map;
+    }
+
     public String listItems() {
         String r= "";
-        for(HashMap.Entry<String, String> item : ItemsDB.entrySet())
+        for(HashMap.Entry<String, String> item : ItemsDB_map.entrySet())
             r= r+"\n Put " + item.getKey() + " in: " + item.getValue();
         return r;
     }
 
-public String findCategory(String item){
+    public String findCategory(String item){
 
-        for (HashMap.Entry<String, String> i : ItemsDB.entrySet()){
+        for (HashMap.Entry<String, String> i : ItemsDB_map.entrySet()){
             if (i.getKey().equals(item))
                 return i.getValue();
         }
         return "Not found";
 
-}
+    }
 
     // Will be used later
     public void addItem(String what, String where){
-        ItemsDB.put(what, where);
+        ItemsDB_map.put(what, where);
     }
 
-    public void fillItemsDB(Context context, String filename) throws IOException {
-        BufferedReader reader = new BufferedReader( new InputStreamReader(context.getAssets().open(filename)) );
-        String line = null;
+    public void fillItemsDB(Context context, String filename) {
         try {
-            line = reader.readLine();
+            BufferedReader reader = new BufferedReader( new InputStreamReader(context.getAssets().open(filename)) );
+            String line = reader.readLine();
             while (line != null){
                 String[] what_where = line.split(", ");
                 String what = what_where[0];
                 String where = what_where[1];
-                ItemsDB.put(what, where);
+                ItemsDB_map.put(what, where);
+                line = reader.readLine();
             }
         } catch (IOException e) { }
     }
 
-    public static void setContext(Context aContext) {
-        context = aContext;
-    }
 }

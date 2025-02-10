@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class AddItemActivity extends AppCompatActivity {
     private static ItemsDB itemsDB;
 
@@ -15,6 +17,7 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item);
         itemsDB= ItemsDB.get();
+
 
         TextView itemAddedNotification= findViewById(R.id.item_was_added_notification);
         itemAddedNotification.setVisibility(TextView.INVISIBLE);

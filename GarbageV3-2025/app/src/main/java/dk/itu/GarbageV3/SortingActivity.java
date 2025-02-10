@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 public class SortingActivity extends AppCompatActivity {
 
     //Shopping V1
@@ -21,8 +23,9 @@ public class SortingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_item);
 
+        ItemsDB.setContext(SortingActivity.this);
+
         itemsDB= ItemsDB.get();
-        itemsDB.fillItemsDB();
 
         TextView items= findViewById(R.id.items);
         EditText sortInput= findViewById(R.id.find_item_to_sort);

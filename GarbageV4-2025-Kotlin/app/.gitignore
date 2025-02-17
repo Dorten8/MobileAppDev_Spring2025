@@ -1,0 +1,54 @@
+
+# =========================
+# Gradle & Build Files
+# =========================
+.gradle/
+build/
+*/build/
+!gradle-wrapper.jar  # Keep Gradle wrapper for easier setup
+
+# =========================
+# Local Configuration Files
+# =========================
+local.properties
+*.keystore
+*.jks
+
+# =========================
+# Android Studio & IntelliJ IDEA
+# =========================
+.idea/
+*.iml
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+captures/
+
+# =========================
+# System & OS Files
+# =========================
+.DS_Store
+Thumbs.db
+*.log
+
+# =========================
+# Android Generated Files
+# =========================
+.cxx/
+.externalNativeBuild/
+*.apk
+output.json
+*.hprof  # Android profiling data
+*.lock   # Gradle and build locks
+
+# =========================
+# Google Services (Sensitive API Keys)
+# =========================
+google-services.json
+firebase.json
+
+# =========================
+# Dependency Files
+# =========================
+gradle.properties  # Excluding to prevent machine-specific Gradle settings
+node_modules/

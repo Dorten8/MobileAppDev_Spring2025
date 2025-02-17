@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GarbageV4</string>
+    <string name="find_item_button">Find item</string>
+    <string name="insert_item">Input item you want to sort</string>
+    <string name="add_item_what_item_to_sort">What item to sort</string>
+    <string name="add_item_where_to_sort">Where to sort it to</string>
+    <string name="add_new_item_button">Add new item</string>
+    <string name="item_was_added_notification">Item was added!</string>
+</resources>

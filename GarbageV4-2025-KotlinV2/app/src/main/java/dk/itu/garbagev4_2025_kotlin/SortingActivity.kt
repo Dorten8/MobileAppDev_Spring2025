@@ -17,7 +17,7 @@ class SortingActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.find_item_activity)
-        itemsDB = ItemsDB.getInstance()
+        itemsDB = ItemsDB.getInstance(this)
 
         val titleWhereToSortItems: TextView = findViewById(R.id.title_where_to_sort_items)
         val findWhereToSortItemsButton: Button = findViewById(R.id.find_item_button)
@@ -32,7 +32,7 @@ class SortingActivity : ComponentActivity() {
         }
 
         sortInput.setOnClickListener{
-            sortInput.setText(" ")
+            sortInput.setText("")
         }
 
         addItemButton.setOnClickListener{

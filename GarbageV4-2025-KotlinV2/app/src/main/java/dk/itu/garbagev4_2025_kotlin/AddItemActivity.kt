@@ -17,7 +17,7 @@ class AddItemActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_new_item)
 
-        itemsDB = ItemsDB.getInstance()
+        itemsDB = ItemsDB.getInstance(this)
 
         val itemAddedNotification: TextView = findViewById(R.id.notification_item_added)
         itemAddedNotification.visibility = View.INVISIBLE

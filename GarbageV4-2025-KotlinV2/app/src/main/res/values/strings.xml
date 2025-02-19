@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GarbageV3</string>
+    <string name="app_name">GarbageV4</string>
     <string name="find_item_button">Find item</string>
     <string name="insert_item">Input item you want to sort</string>
     <string name="add_item_what_item_to_sort">What item to sort</string>

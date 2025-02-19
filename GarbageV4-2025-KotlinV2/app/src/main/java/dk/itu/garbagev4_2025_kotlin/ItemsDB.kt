@@ -4,19 +4,16 @@ import android.content.Context
 import java.io.BufferedReader
 import java.io.File
 
-class ItemsDB private constructor() {
+class ItemsDB private constructor(context: Context) {
 
     //Singleton pattern
     companion object {
+        @Volatile
         private var sItemsDB: ItemsDB? = null
 
-        fun get(): ItemsDB {
-            return sItemsDB ?: ItemsDB().also { sItemsDB = it }
-        }
-
-        fun getInstance() =
+        fun getInstance(context: Context) =
             sItemsDB ?: synchronized(this){
-                sItemsDB ?: ItemsDB().also { sItemsDB = it }
+                sItemsDB ?: ItemsDB(context).also { sItemsDB = it }
             }
     }
 
@@ -24,7 +21,7 @@ class ItemsDB private constructor() {
     private val itemsMap: MutableMap<String, String> = mutableMapOf()
 
     //Constructor
-    init { fillItemsDB2("assets/garbage.txt") }
+    init { fillItemsDB(context,"assets/garbage.txt") }
 
     fun listItems(): String {
         var r = ""
@@ -44,6 +41,7 @@ class ItemsDB private constructor() {
 
     private fun fillItemsDB(context: Context, fileName: String) {
         try {
+            val inputStream = context.assets.open(fileName)
             val bufferedReader = BufferedReader(context.assets.open(fileName).reader())
             bufferedReader.useLines {
                 lines -> lines.forEach {
@@ -52,15 +50,5 @@ class ItemsDB private constructor() {
             }
         }
         catch (e: Exception) { }
-    }
-
-    private fun fillItemsDB2(filePath: String) {
-
-        File(filePath).useLines { lines ->
-            lines.forEach { line ->
-                val parts = line.split(", ")
-                itemsMap[parts[0]] = parts[1]
-            }
-        }
     }
 }

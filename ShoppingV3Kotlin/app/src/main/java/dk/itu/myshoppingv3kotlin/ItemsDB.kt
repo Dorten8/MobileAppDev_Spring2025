@@ -1,9 +1,10 @@
 package dk.itu.myshoppingv3kotlin
 
 class ItemsDB private constructor(){
+
     private val itemsMap:HashMap<String,String> = HashMap<String,String>()
 
-    init { fillItemsDB()}
+    init { fillItemsDB() }
 
     companion object {
         private var sItemsDB: ItemsDB? = null

@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Garbage-V4-Kotlin"
+rootProject.name = "GarbageV4-2025-Kotlin"
 include(":app")
  

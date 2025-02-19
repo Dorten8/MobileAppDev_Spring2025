@@ -10,12 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GarbageV4Kotlin"
+        android:theme="@style/Theme.GarbageV42025Kotlin"
         tools:targetApi="31">
         <activity
             android:name=".SortingActivity"
-            android:exported="true"
-            android:theme="@style/Theme.GarbageV4Kotlin">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

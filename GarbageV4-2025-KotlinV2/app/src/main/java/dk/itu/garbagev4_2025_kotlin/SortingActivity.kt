@@ -1,5 +1,6 @@
 package dk.itu.garbagev4_2025_kotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -16,11 +17,12 @@ class SortingActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.find_item_activity)
-        itemsDB = ItemsDB.get(this)
+        itemsDB = ItemsDB.getInstance()
 
         val titleWhereToSortItems: TextView = findViewById(R.id.title_where_to_sort_items)
         val findWhereToSortItemsButton: Button = findViewById(R.id.find_item_button)
         val sortInput: EditText = findViewById<EditText?>(R.id.find_item_to_sort)
+        val addItemButton: Button = findViewById(R.id.add_new_item_button)
 
 
         findWhereToSortItemsButton.setOnClickListener{
@@ -28,5 +30,15 @@ class SortingActivity : ComponentActivity() {
             val itemWhere = itemsDB.getWhere(itemWhat)
             sortInput.setText("Item ${itemWhat} should be placed in: ${itemWhere} container")
         }
+
+        sortInput.setOnClickListener{
+            sortInput.setText(" ")
+        }
+
+        addItemButton.setOnClickListener{
+            val intent = Intent(this, AddItemActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

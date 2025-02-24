@@ -6,4 +6,6 @@
     <string name="add_item_where_to_sort">Where to sort it to</string>
     <string name="add_new_item_button">Add new item</string>
     <string name="item_was_added_notification">Item was added!</string>
+    <string name="item_was_not_added_notification">You need to enter values!</string>
+
 </resources>

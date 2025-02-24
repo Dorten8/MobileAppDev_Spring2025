@@ -21,7 +21,7 @@ class ItemsDB private constructor(context: Context) {
     private val itemsMap: MutableMap<String, String> = mutableMapOf()
 
     //Constructor
-    init { fillItemsDB(context,"assets/garbage.txt") }
+    init { fillItemsDB(context,"garbage.txt") }
 
     fun listItems(): String {
         var r = ""

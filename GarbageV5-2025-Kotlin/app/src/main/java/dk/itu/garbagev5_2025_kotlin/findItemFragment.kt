@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 class findItemFragment: Fragment() {
+
     private lateinit var itemsDB: ItemsDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,27 +24,25 @@ class findItemFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val v=inflater.inflate(R.layout.fragment_find_item, container, false)
+
+        val v = inflater.inflate(R.layout.fragment_find_item, container, false)
 
         val findWhereToSortItemsButton: Button = v.findViewById(R.id.find_item_button)
         val sortInput: EditText = v.findViewById<EditText?>(R.id.find_item_to_sort)
-//        val addItemButton: Button = v.findViewById(R.id.add_new_item_button)
-
 
         findWhereToSortItemsButton.setOnClickListener{
-            val itemWhat = sortInput.text.toString()
-            val itemWhere = itemsDB.getWhere(itemWhat)
-            sortInput.setText("Item ${itemWhat} should be placed in: ${itemWhere} container")
+            if(sortInput.text.toString().trim().isNotEmpty()){
+                val itemWhat = sortInput.text.toString().trim()
+                val itemWhere = itemsDB.getWhere(itemWhat)
+                sortInput.setText("Item ${itemWhat} should be placed in: ${itemWhere} container")
+            }else{
+                Toast.makeText(requireContext(), R.string.empty_toast, Toast.LENGTH_LONG).show()
+            }
         }
 
         sortInput.setOnClickListener{
-            sortInput.setText("")
+            sortInput.text.clear()
         }
-
-//        addItemButton.setOnClickListener{
-//            val intent = Intent(this, AddItemActivity::class.java)
-//            startActivity(intent)
-//        }
 
         return v
     }

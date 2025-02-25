@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class listItemsFragment: Fragment() {
+
     private lateinit var itemsDB: ItemsDB
     private lateinit var listThings: TextView
 
@@ -21,11 +22,12 @@ class listItemsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v=inflater.inflate(R.layout.fragment_list_items, container, false)
+
+        val v = inflater.inflate(R.layout.fragment_list_items, container, false)
 
         listThings = v.findViewById(R.id.list_all_items)
 
-        listThings.text = "Garbage Sorting list" + itemsDB.listItems()
+        listThings.text = "Garbage Sorting list \n" + itemsDB.listItems()
 
         return v
     }

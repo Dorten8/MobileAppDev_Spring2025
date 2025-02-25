@@ -7,38 +7,33 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
-class SortingActivity : ComponentActivity() {
+class SortingActivity : AppCompatActivity() {
 
     private lateinit var itemsDB: ItemsDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        setContentView(R.layout.find_item_activity)
+        setContentView(R.layout.activity_find_item_container)
         itemsDB = ItemsDB.getInstance(this)
+        setUpFragments()
+    }
 
-        val titleWhereToSortItems: TextView = findViewById(R.id.title_where_to_sort_items)
-        val findWhereToSortItemsButton: Button = findViewById(R.id.find_item_button)
-        val sortInput: EditText = findViewById<EditText?>(R.id.find_item_to_sort)
-        val addItemButton: Button = findViewById(R.id.add_new_item_button)
+    private fun setUpFragments() {
+        val fm = supportFragmentManager
+        var fragmentFindItem: Fragment? = fm.findFragmentById(R.id.fragment_find_item_container)
+        var fragmentListItems: Fragment? = fm.findFragmentById(R.id.fragment_list_items_container)
+        if (fragmentFindItem == null && fragmentListItems == null) {
 
+            fragmentFindItem = findItemFragment()
+            fragmentListItems = listItemsFragment()
 
-        findWhereToSortItemsButton.setOnClickListener{
-            val itemWhat = sortInput.text.toString()
-            val itemWhere = itemsDB.getWhere(itemWhat)
-            sortInput.setText("Item ${itemWhat} should be placed in: ${itemWhere} container")
+            fm.beginTransaction()
+                .add(R.id.fragment_find_item_container, fragmentFindItem)
+                .add(R.id.fragment_list_items_container, fragmentListItems)
+                .commit()
         }
-
-        sortInput.setOnClickListener{
-            sortInput.setText("")
-        }
-
-        addItemButton.setOnClickListener{
-            val intent = Intent(this, AddItemActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }

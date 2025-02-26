@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#767272"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <!-- What new item -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.7"
+            android:text="@string/what_item"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/what_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffffff" />
+    </LinearLayout>
+
+    <!-- Where ito buy new item -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.7"
+            android:text="@string/where"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/where_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="#ffffff" />
+    </LinearLayout>
+
+    <!-- Button to list all items-->
+    <Button
+        android:id="@+id/find_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="#39f208"
+        android:text="@string/where"
+        android:textSize="@dimen/text_size" />
+
+    <!-- Button to add new item-->
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="#39f208"
+        android:text="@string/add"
+        android:textSize="@dimen/text_size" />
+</LinearLayout>

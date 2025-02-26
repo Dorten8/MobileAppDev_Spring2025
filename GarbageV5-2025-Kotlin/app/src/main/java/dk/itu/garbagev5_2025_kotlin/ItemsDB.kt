@@ -1,9 +1,15 @@
 package dk.itu.garbagev5_2025_kotlin
 
 import android.content.Context
+import androidx.lifecycle.Observer
 import java.io.BufferedReader
 
 class ItemsDB private constructor(context: Context) {
+
+    //handling files
+    private val itemsMap: MutableMap<String, String> = mutableMapOf()
+
+    private var observers: MutableList<Observer<Any>> = mutableListOf()
 
     //Singleton pattern
     companion object {
@@ -16,8 +22,6 @@ class ItemsDB private constructor(context: Context) {
             }
     }
 
-    //handling files
-    private val itemsMap: MutableMap<String, String> = mutableMapOf()
 
     //Constructor
     init { fillItemsDB(context,"garbage.txt") }
@@ -36,6 +40,7 @@ class ItemsDB private constructor(context: Context) {
 
     fun addItem(what: String, where: String) {
         itemsMap[what] = where
+        updateData()
     }
 
     private fun fillItemsDB(context: Context, fileName: String) {
@@ -50,4 +55,16 @@ class ItemsDB private constructor(context: Context) {
         }
         catch (e: Exception) { }
     }
+
+    fun addObserver (observer : Observer<Any>) {
+        observers.add(observer)
+    }
+
+    fun updateData () {
+        for (observer in observers){
+            observer.onChanged("")
+        }
+
+    }
+
 }

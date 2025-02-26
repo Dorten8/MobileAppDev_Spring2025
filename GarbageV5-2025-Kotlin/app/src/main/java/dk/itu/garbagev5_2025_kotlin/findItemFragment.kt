@@ -1,5 +1,6 @@
 package dk.itu.garbagev5_2025_kotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class findItemFragment: Fragment() {
         val v = inflater.inflate(R.layout.fragment_find_item, container, false)
 
         val findWhereToSortItemsButton: Button = v.findViewById(R.id.find_item_button)
+        val addNewItemButton: Button = v.findViewById(R.id.add_new_item_button)
         val sortInput: EditText = v.findViewById<EditText?>(R.id.find_item_to_sort)
 
         findWhereToSortItemsButton.setOnClickListener{
@@ -38,6 +40,11 @@ class findItemFragment: Fragment() {
             }else{
                 Toast.makeText(requireContext(), R.string.empty_toast, Toast.LENGTH_LONG).show()
             }
+        }
+
+        addNewItemButton.setOnClickListener{
+            val intent = Intent(requireContext(), AddItemActivity::class.java)
+            startActivity(intent)
         }
 
         sortInput.setOnClickListener{

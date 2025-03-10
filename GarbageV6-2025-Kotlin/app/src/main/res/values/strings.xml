@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GarbageV6</string>
+
+    //button
+    <string name="find_item_button">Find item</string>
+    <string name="add_new_item_button">Add new item</string>
+
+    //edit text
+    <string name="insert_item">Input item you want to sort</string>
+
+    //text view
+    <string name="add_item_what_item_to_sort">What item to sort</string>
+    <string name="add_item_where_to_sort">Where to sort it to</string>
+
+    //notification
+    <string name="item_was_added_notification">Item was added!</string>
+    <string name="item_was_not_added_notification">You need to enter values!</string>
+    <string name="empty_toast">You need to enter values!</string>
+
+    //others
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-class AddNewFragment: Fragment() {
+class AddItemFragment: Fragment() {
 
     private lateinit var itemsDB: ItemsDB
 
@@ -42,7 +42,7 @@ class AddNewFragment: Fragment() {
 
 
             if(userInputWhatToSort == "" || userInputWhereToSort == ""){
-                itemAddedNotification.text = "You need to enter values"
+                itemAddedNotification.text = getString(R.string.item_was_not_added_notification)
                 itemAddedNotification.visibility = View.VISIBLE
 
             }

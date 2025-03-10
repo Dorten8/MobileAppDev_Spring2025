@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-class findItemFragment: Fragment() {
+class FindItemFragment: Fragment() {
 
     private lateinit var itemsDB: ItemsDB
 

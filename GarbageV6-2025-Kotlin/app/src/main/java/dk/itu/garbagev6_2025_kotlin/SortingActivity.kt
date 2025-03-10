@@ -10,7 +10,7 @@ class SortingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_find_item_container)
+        setContentView(R.layout.activity_find_item)
         itemsDB = ItemsDB.getInstance(this)
         setUpFragments()
     }
@@ -21,8 +21,8 @@ class SortingActivity : AppCompatActivity() {
         var fragmentListItems: Fragment? = fm.findFragmentById(R.id.fragment_list_items_container)
         if (fragmentFindItem == null && fragmentListItems == null) {
 
-            fragmentFindItem = findItemFragment()
-            fragmentListItems = listItemsFragment()
+            fragmentFindItem = FindItemFragment()
+            fragmentListItems = ListItemsFragment()
 
             fm.beginTransaction()
                 .add(R.id.fragment_find_item_container, fragmentFindItem)

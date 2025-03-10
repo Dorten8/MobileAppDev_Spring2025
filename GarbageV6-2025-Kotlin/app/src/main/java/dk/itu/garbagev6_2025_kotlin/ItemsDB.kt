@@ -43,6 +43,14 @@ class ItemsDB private constructor(context: Context) {
         updateData()
     }
 
+    fun removeItem(what: String){
+        itemsMap.remove(what)
+    }
+
+    fun isPresent(what: String): Boolean {
+        return itemsMap[what] != null
+    }
+
     private fun fillItemsDB(context: Context, fileName: String) {
         try {
             val inputStream = context.assets.open(fileName)

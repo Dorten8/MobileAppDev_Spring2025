@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 
-class listItemsFragment: Fragment(), Observer<Any> {
+class ListItemsFragment: Fragment(), Observer<Any> {
 
     private lateinit var itemsDB: ItemsDB
     private lateinit var listThings: TextView

@@ -21,8 +21,8 @@ class AddItemActivity : AppCompatActivity() {
         var fragmentListItems: Fragment? = fm.findFragmentById(R.id.fragment_list_items_container)
         if (fragmentAddItem == null && fragmentListItems == null) {
 
-            fragmentAddItem = AddNewFragment()
-            fragmentListItems = listItemsFragment()
+            fragmentAddItem = AddItemFragment()
+            fragmentListItems = ListItemsFragment()
 
             fm.beginTransaction()
                 .add(R.id.fragment_add_new_container, fragmentAddItem)

@@ -27,7 +27,7 @@ class ListItemsFragment: Fragment(), Observer<Any> {
 
         val v = inflater.inflate(R.layout.fragment_list_items, container, false)
 
-        listThings = v.findViewById(R.id.list_all_items)
+        listThings = v.findViewById(R.id.list_items_tw)
 
         listThings.text = "Garbage Sorting list \n" + itemsDB.listItems()
 

@@ -26,18 +26,18 @@ class AddItemFragment: Fragment() {
 
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val v = inflater.inflate(R.layout.fragment_add_new, container, false)
+        val v = inflater.inflate(R.layout.fragment_add_item, container, false)
 
 
 
-        val itemAddedNotification: TextView = v.findViewById(R.id.notification_item_added)
+        val itemAddedNotification: TextView = v.findViewById(R.id.add_item_notification)
         itemAddedNotification.visibility = View.INVISIBLE
 
-        val addNewItemButton = v.findViewById<Button>(R.id.add_new_item_button)
+        val addNewItemButton = v.findViewById<Button>(R.id.add_item_bt)
 
         addNewItemButton.setOnClickListener {
-            val userInputWhatToSort = v.findViewById<TextView>(R.id.add_item_what_item_to_sort).text.toString()
-            val userInputWhereToSort = v.findViewById<TextView>(R.id.add_where_to_sort_new_item_text).text.toString()
+            val userInputWhatToSort = v.findViewById<TextView>(R.id.add_item_what_et).text.toString()
+            val userInputWhereToSort = v.findViewById<TextView>(R.id.add_item_where_et).text.toString()
 
 
 
@@ -50,8 +50,8 @@ class AddItemFragment: Fragment() {
                 itemsDB.addItem(userInputWhatToSort, userInputWhereToSort)
                 itemAddedNotification.text = "Item was added!"
                 itemAddedNotification.visibility = View.VISIBLE
-                v.findViewById<TextView>(R.id.add_item_what_item_to_sort).text = ""
-                v.findViewById<TextView>(R.id.add_where_to_sort_new_item_text).text = ""
+                v.findViewById<TextView>(R.id.add_item_what_et).text = ""
+                v.findViewById<TextView>(R.id.add_item_where_et).text = ""
                 val inputMethodManager = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(addNewItemButton.windowToken, 0)
             }

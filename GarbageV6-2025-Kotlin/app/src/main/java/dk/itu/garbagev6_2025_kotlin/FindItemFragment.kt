@@ -28,9 +28,9 @@ class FindItemFragment: Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_find_item, container, false)
 
-        val findWhereToSortItemsButton: Button = v.findViewById(R.id.find_item_button)
-        val addNewItemButton: Button = v.findViewById(R.id.add_new_item_button)
-        val sortInput: EditText = v.findViewById<EditText?>(R.id.find_item_to_sort)
+        val findWhereToSortItemsButton: Button = v.findViewById(R.id.find_item_bt)
+        val addNewItemButton: Button = v.findViewById(R.id.find_add_item_bt)
+        val sortInput: EditText = v.findViewById<EditText?>(R.id.find_item_et)
 
         findWhereToSortItemsButton.setOnClickListener{
             if(sortInput.text.toString().trim().isNotEmpty()){

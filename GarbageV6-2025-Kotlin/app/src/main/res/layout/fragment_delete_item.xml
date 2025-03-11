@@ -10,11 +10,11 @@
     tools:context=".AddItemActivity">
 
     <TextView
-        android:id="@+id/what_item_to_delete_title"
+        android:id="@+id/delete_item_tw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/delete_item"
+        android:hint="@string/delete_item_tw"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,41 +22,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/enter_what_item_to_delete_input"
+        android:id="@+id/delete_item_et"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="@string/delete_item_hint"
+        android:hint="@string/delete_item_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/what_item_to_delete_title" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_item_tw" />
 
 
 
     <Button
-        android:id="@+id/delete_item_button"
+        android:id="@+id/delete_item_bt"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_size"
-        android:text="@string/string_delete_item_button"
+        android:text="@string/delete_item_bt"
         android:textSize="@dimen/text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_what_item_to_delete_input" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_item_et" />
 
     <TextView
-        android:id="@+id/notification_item_deleted"
+        android:id="@+id/delete_item_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="60sp"
-        android:text="@string/item_was_deleted_notification"
+        android:text="@string/delete_item_notification"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_what_item_to_delete_input"
+        app:layout_constraintTop_toBottomOf="@+id/delete_item_et"
         app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

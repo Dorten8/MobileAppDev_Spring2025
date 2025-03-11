@@ -9,35 +9,36 @@
 
     <!-- TextView to show all items -->
     <TextView
-        android:id="@+id/title_where_to_sort_items"
+        android:id="@+id/find_item_tw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/find_item_tw"
         android:textSize="@dimen/text_size"
         android:layout_marginBottom="5dp"/>
 
-    <!-- Button to list all items-->    <EditText
-        android:id="@+id/find_item_to_sort"
+    <EditText
+        android:id="@+id/find_item_et"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="5dp"
         android:background="@color/white"
-        android:hint="@string/insert_item"
+        android:hint="@string/find_item_et"
         android:inputType="text" />
 
     <Button
-        android:id="@+id/find_item_button"
+        android:id="@+id/find_item_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="@string/find_item_button"
+        android:layout_gravity="center"
+        android:text="@string/find_item_bt"
         android:textSize="@dimen/text_size" />
 
     <Button
-        android:id="@+id/add_new_item_button"
+        android:id="@+id/find_add_item_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:text="@string/add_new_item_button"
+        android:text="@string/find_add_item_bt"
         android:textSize="@dimen/text_size" />
 
 </LinearLayout>

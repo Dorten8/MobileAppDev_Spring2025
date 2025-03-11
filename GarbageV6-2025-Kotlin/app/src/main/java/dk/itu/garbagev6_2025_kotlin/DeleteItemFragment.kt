@@ -30,10 +30,10 @@ class DeleteItemFragment: Fragment() {
         val v = inflater.inflate(R.layout.fragment_delete_item, container, false)
 
 
-        val deleteItemButton = v.findViewById<Button>(R.id.delete_item_button)
+        val deleteItemButton = v.findViewById<Button>(R.id.delete_item_bt)
 
         deleteItemButton.setOnClickListener{
-            val userInputWhatToDelete = v.findViewById<EditText>(R.id.enter_what_item_to_delete_input)
+            val userInputWhatToDelete = v.findViewById<EditText>(R.id.delete_item_et)
 
             val what = userInputWhatToDelete.text.toString().trim { it <= ' '}
             val message = if (itemsDB.isPresent(what)){

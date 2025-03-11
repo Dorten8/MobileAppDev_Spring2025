@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/list_all_items"
+        android:id="@+id/list_items_tw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"

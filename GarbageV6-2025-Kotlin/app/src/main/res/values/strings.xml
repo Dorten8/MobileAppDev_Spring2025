@@ -1,32 +1,60 @@
 <resources>
     <string name="app_name">GarbageV6</string>
 
-    //button
-    <string name="find_item_button">Find item</string>
-    <string name="add_new_item_button">Add new item</string>
-    <string name="string_delete_item_button">Delete item</string>
 
-
-    //edit text
-    <string name="insert_item">Input item you want to sort</string>
+    // Fragment FIND
 
     //text view
-    <string name="add_item_what_item_to_sort">What item to sort</string>
-    <string name="add_item_where_to_sort">Where to sort it to</string>
-    <string name="delete_item">What item to delete</string>
-    <string name="delete_item_hint">Enter what item to delete</string>
+    <string name="find_item_tw">What item to sort</string>
+
+    //edit text
+    <string name="find_item_et">Input the item you want to sort</string>
+
+    //button
+    <string name="find_item_bt">Find item</string>
+    <string name="find_add_item_bt">Move to "add new item"</string>
+
+
+    // Fragment ADD
+
+    //text view
+    <string name="add_item_what_tw">What item to sort</string>
+    <string name="add_item_where_tw">Where item to sort</string>
+
+    //edit text
+    <string name="add_item_what_et">Input what item you want to add</string>
+    <string name="add_item_where_et">Input where the item goes</string>
+
+    //button
+    <string name="add_item_bt">Add new item</string>
+
+    //notification
+    <string name="add_item_notification">New item added!</string>
+
+
+    // Fragment DELETE
+
+    //text view
+    <string name="delete_item_tw">What item to delete</string>
+
+    //edit text
+    <string name="delete_item_et">Input the item you want to delete</string>
+
+    //button
+    <string name="delete_item_bt">Delete item</string>
+
+    //notification
+    <string name="delete_item_notification">Item deleted!</string>
+
+
+
+
 
 
 
     //notification
-    <string name="item_was_added_notification">Item was added!</string>
     <string name="item_was_not_added_notification">You need to enter values!</string>
     <string name="empty_toast">You need to enter values!</string>
-    <string name="item_was_deleted_notification">Item was deleted!</string>
 
-
-    //others
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

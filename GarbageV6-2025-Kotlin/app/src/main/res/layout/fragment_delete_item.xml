@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#767272"
     android:padding="5dp"
-    tools:context=".AddItemActivity">
+    tools:context=".DeleteItemActivity">
 
     <TextView
         android:id="@+id/delete_item_tw"

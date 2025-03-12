@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
-class AddItemActivity : AppCompatActivity() {
+class DeleteItemActivity : AppCompatActivity() {
 
     private lateinit var itemsDB: ItemsDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_item_container)
+        setContentView(R.layout.activity_delete_item_container)
         itemsDB = ItemsDB.getInstance(this)
         setUpFragments()
     }
@@ -18,16 +18,16 @@ class AddItemActivity : AppCompatActivity() {
     private fun setUpFragments(){
         val fm = supportFragmentManager
 
-        var fragmentAddItem: Fragment? = fm.findFragmentById(R.id.fragment_add_new_container)
+        var fragmentDeleteItem: Fragment? = fm.findFragmentById(R.id.fragment_delete_item_container)
         var fragmentListItems: Fragment? = fm.findFragmentById(R.id.fragment_list_items_container)
 
-        if (fragmentAddItem == null && fragmentListItems == null) {
+        if (fragmentDeleteItem == null && fragmentListItems == null) {
 
-            fragmentAddItem = AddItemFragment()
+            fragmentDeleteItem = DeleteItemFragment()
             fragmentListItems = ListItemsFragment()
 
             fm.beginTransaction()
-                .add(R.id.fragment_add_new_container, fragmentAddItem)
+                .add(R.id.fragment_delete_item_container, fragmentDeleteItem)
                 .add(R.id.fragment_list_items_container, fragmentListItems)
                 .commit()
         }

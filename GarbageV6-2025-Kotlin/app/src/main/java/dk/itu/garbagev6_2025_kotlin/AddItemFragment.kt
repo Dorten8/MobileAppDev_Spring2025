@@ -28,8 +28,6 @@ class AddItemFragment: Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_add_item, container, false)
 
-
-
         val itemAddedNotification: TextView = v.findViewById(R.id.add_item_notification)
         itemAddedNotification.visibility = View.INVISIBLE
 

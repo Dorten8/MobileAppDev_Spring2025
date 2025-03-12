@@ -41,4 +41,12 @@
         android:text="@string/find_add_item_bt"
         android:textSize="@dimen/text_size" />
 
+    <Button
+        android:id="@+id/find_delete_item_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/find_delete_item_bt"
+        android:textSize="@dimen/text_size" />
+
 </LinearLayout>

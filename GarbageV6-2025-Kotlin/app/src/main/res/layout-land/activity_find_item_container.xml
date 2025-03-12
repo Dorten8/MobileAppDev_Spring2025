@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
-    >
+    tools:ignore="MissingDefaultResource">
 
     <FrameLayout
-        android:id="@+id/fragment_add_new_container"
+        android:id="@+id/fragment_find_item_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1"/>
 
     <FrameLayout
         android:id="@+id/fragment_list_items_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1"/>
 
 </LinearLayout>

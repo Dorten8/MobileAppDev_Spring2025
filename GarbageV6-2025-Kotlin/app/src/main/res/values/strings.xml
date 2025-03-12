@@ -13,6 +13,7 @@
     //button
     <string name="find_item_bt">Find item</string>
     <string name="find_add_item_bt">Move to "add new item"</string>
+    <string name="find_delete_item_bt">Move to "delete an item"</string>
 
 
     // Fragment ADD

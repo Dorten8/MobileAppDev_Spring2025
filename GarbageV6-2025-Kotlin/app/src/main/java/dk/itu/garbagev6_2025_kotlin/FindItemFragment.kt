@@ -7,17 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 
 class FindItemFragment: Fragment() {
-
-    private lateinit var itemsDB: ItemsDB
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        itemsDB = ItemsDB.getInstance(requireContext())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,27 +21,51 @@ class FindItemFragment: Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_find_item, container, false)
 
-        val findWhereToSortItemsButton: Button = v.findViewById(R.id.find_item_bt)
-        val addNewItemButton: Button = v.findViewById(R.id.find_add_item_bt)
-        val sortInput: EditText = v.findViewById<EditText?>(R.id.find_item_et)
+        val viewModel = ViewModelProvider(requireActivity())[FindItemVM::class.java]
 
-        findWhereToSortItemsButton.setOnClickListener{
-            if(sortInput.text.toString().trim().isNotEmpty()){
-                val itemWhat = sortInput.text.toString().trim()
-                val itemWhere = itemsDB.getWhere(itemWhat)
-                sortInput.setText("Item ${itemWhat} should be placed in: ${itemWhere} container")
-            }else{
-                Toast.makeText(requireContext(), R.string.empty_toast, Toast.LENGTH_LONG).show()
+
+        val findItemButton: Button = v.findViewById(R.id.find_item_bt)
+        val addItemButton: Button = v.findViewById(R.id.find_add_item_bt)
+        val deleteItemButton: Button = v.findViewById(R.id.find_delete_item_bt)
+
+        val findItemEditText: EditText = v.findViewById<EditText?>(R.id.find_item_et)
+
+        findItemButton.setOnClickListener {
+            activity?.let { fragmentActivity ->
+                viewModel.onFindItemButtonClick(
+                    findItemEditText,
+                    fragmentActivity
+                )
             }
         }
 
-        addNewItemButton.setOnClickListener{
-            val intent = Intent(requireContext(), AddItemActivity::class.java)
-            startActivity(intent)
+        findItemEditText.setOnClickListener{
+            viewModel.onFindItemEditTextClick(findItemEditText)
         }
 
-        sortInput.setOnClickListener{
-            sortInput.text.clear()
+        addItemButton.setOnClickListener {
+            viewModel.onAddItemButtonClicked()
+        }
+
+        deleteItemButton.setOnClickListener {
+            viewModel.onDeleteItemButtonClicked()
+        }
+
+        // Observe LiveData for navigation
+        viewModel.navigateToAddItem.observe(viewLifecycleOwner) { shouldNavigate ->
+            if (shouldNavigate) {
+                val intent = Intent(requireContext(), AddItemActivity::class.java)
+                startActivity(intent)
+                viewModel.onNavigationHandled()  // Reset event after navigation
+            }
+        }
+
+        viewModel.navigateToDeleteItem.observe(viewLifecycleOwner) { shouldNavigate ->
+            if (shouldNavigate) {
+                val intent = Intent(requireContext(), DeleteItemActivity::class.java)
+                startActivity(intent)
+                viewModel.onNavigationHandled()  // Reset event after navigation
+            }
         }
 
         return v

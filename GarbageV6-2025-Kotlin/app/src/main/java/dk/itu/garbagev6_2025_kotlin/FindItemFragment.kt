@@ -23,7 +23,6 @@ class FindItemFragment: Fragment() {
 
         val viewModel = ViewModelProvider(requireActivity())[FindItemVM::class.java]
 
-
         val findItemButton: Button = v.findViewById(R.id.find_item_bt)
         val addItemButton: Button = v.findViewById(R.id.find_add_item_bt)
         val deleteItemButton: Button = v.findViewById(R.id.find_delete_item_bt)

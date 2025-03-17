@@ -9,49 +9,35 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
 
 class DeleteItemFragment: Fragment() {
 
-    private lateinit var itemsDB: ItemsDB
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        itemsDB = ItemsDB.getInstance(requireContext())
-    }
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle? ): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         super.onCreateView(inflater, container, savedInstanceState)
 
         val v = inflater.inflate(R.layout.fragment_delete_item, container, false)
 
-        val deleteItemButton = v.findViewById<Button>(R.id.delete_item_bt)
+        val viewModel = ViewModelProvider(requireActivity())[DeleteItemVM::class.java]
+
+        val deleteItemButton: Button = v.findViewById(R.id.delete_item_bt)
+
+        val deleteItemEditText: EditText = v.findViewById(R.id.delete_item_et)
 
         deleteItemButton.setOnClickListener{
-            val userInputWhatToDelete = v.findViewById<EditText>(R.id.delete_item_et)
-
-            val what = userInputWhatToDelete.text.toString().trim { it <= ' '}
-
-            val message = if (itemsDB.isPresent(what)){
-                itemsDB.removeItem(what)
-                "Removed $what"
-            } else {
-                "$what not found"
+            activity?.let { fragmentActivity ->
+                viewModel.onDeleteItemButtonClick(
+                    deleteItemEditText,
+                    fragmentActivity
+                )
             }
-            showToast(requireContext(), message)
-
         }
-
         return v
     }
-
-    private fun showToast(activity: Context, message: CharSequence) {
-        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
-    }
-
-
-
 }

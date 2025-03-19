@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#767272"
+    android:padding="5dp"
+    android:orientation="vertical">
+
+    <!-- TextView to show all items -->
+    <TextView
+        android:id="@+id/find_item_tw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/find_item_tw"
+        android:textSize="@dimen/text_size"
+        android:layout_marginBottom="5dp"/>
+
+    <EditText
+        android:id="@+id/find_item_et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:hint="@string/find_item_et"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/find_item_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/find_item_bt"
+        android:textSize="@dimen/text_size" />
+
+    <Button
+        android:id="@+id/find_add_item_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/find_add_item_bt"
+        android:textSize="@dimen/text_size" />
+
+    <Button
+        android:id="@+id/find_delete_item_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/find_delete_item_bt"
+        android:textSize="@dimen/text_size" />
+
+</LinearLayout>

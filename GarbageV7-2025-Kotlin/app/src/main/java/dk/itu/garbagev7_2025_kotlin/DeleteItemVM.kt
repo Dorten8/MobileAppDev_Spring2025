@@ -9,20 +9,17 @@ class DeleteItemVM : ViewModel(){
 
     private lateinit var itemsDB: ItemsDB
 
-    fun onDeleteItemButtonClick(delete_item_et: EditText, activity: FragmentActivity){
-
+    // Update this method to accept a String
+    fun onDeleteItemButtonClick(what: String, activity: FragmentActivity) {
         itemsDB = ItemsDB.getInstance(activity.applicationContext)
 
-        val itemWhat = delete_item_et.text.toString().trim()
-
-        val message = if (itemsDB.isPresent(itemWhat)){
-            itemsDB.removeItem(itemWhat)
-            delete_item_et.text.clear()
+        val message = if (itemsDB.isPresent(what)) {
+            itemsDB.removeItem(what)
             "${activity.getString(R.string.delete_item_notification)}"
-        } else if (itemWhat.isEmpty()){
+        } else if (what.isEmpty()) {
             "${activity.getString(R.string.empty_toast)} in both fields"
-        } else{
-            "$itemWhat not found"
+        } else {
+            "$what not found"
         }
 
         showToast(activity, message)

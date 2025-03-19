@@ -26,6 +26,10 @@ class ItemsDB private constructor(context: Context) {
     //Constructor
     init { fillItemsDB(context,"garbage.txt") }
 
+    fun getItemsMap(): MutableMap<String, String> {
+        return itemsMap
+    }
+
     fun listItems(): String {
         var r = ""
         for ((key, value) in itemsMap) {

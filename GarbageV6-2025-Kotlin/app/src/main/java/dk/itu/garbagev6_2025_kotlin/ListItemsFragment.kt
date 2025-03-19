@@ -7,17 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
-class ListItemsFragment: Fragment(), Observer<Any> {
-
-    private lateinit var itemsDB: ItemsDB
-    private lateinit var listThings: TextView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        itemsDB = ItemsDB.getInstance(requireContext())
-        itemsDB.addObserver(this)
-    }
+class ListItemsFragment: Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,16 +17,22 @@ class ListItemsFragment: Fragment(), Observer<Any> {
         savedInstanceState: Bundle?
     ): View? {
 
+        super.onCreateView(inflater, container, savedInstanceState)
+
         val v = inflater.inflate(R.layout.fragment_list_items, container, false)
 
-        listThings = v.findViewById(R.id.list_items_tw)
+        val viewModel = ViewModelProvider(requireActivity())[ListItemsVM::class.java]
 
-        listThings.text = "Garbage Sorting list \n" + itemsDB.listItems()
+        val listThings: TextView = v.findViewById(R.id.list_items_tw)
+
+        activity?.let { fragmentActivity ->
+            viewModel.onListItemsTextViewDisplay(
+                listThings,
+                fragmentActivity
+            )
+        }
 
         return v
     }
 
-    override fun onChanged(value: Any) {
-        listThings.text = "Garbage Sorting list \n" + itemsDB.listItems()
-    }
 }

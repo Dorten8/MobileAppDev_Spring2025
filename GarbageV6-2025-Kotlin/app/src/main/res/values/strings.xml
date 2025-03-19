@@ -47,6 +47,11 @@
     //notification
     <string name="delete_item_notification">Item deleted!</string>
 
+    // Fragment FIND
+
+    //notification
+    <string name="list_items_notification">DataBase is empty!</string>
+
 
 
 

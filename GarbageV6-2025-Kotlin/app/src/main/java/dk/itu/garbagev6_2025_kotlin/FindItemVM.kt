@@ -9,17 +9,14 @@ import androidx.lifecycle.ViewModel
 
 class FindItemVM : ViewModel() {
 
-    private lateinit var itemsDB: ItemsDB
+    private var itemsDB: ItemsDB = ItemsDB.getInstance()
 
-    private val _navigateToAddItem = MutableLiveData<Boolean>()
-    val navigateToAddItem: LiveData<Boolean> get() = _navigateToAddItem
+    private val _uiState = MutableLiveData<Boolean>()
 
-    private val _navigateToDeleteItem = MutableLiveData<Boolean>()
-    val navigateToDeleteItem: LiveData<Boolean> get() = _navigateToDeleteItem
+    val navigateToAddItem: LiveData<Boolean> get() = _uiState
+    val navigateToDeleteItem: LiveData<Boolean> get() = _uiState
 
     fun onFindItemButtonClick(find_item_et: EditText, activity: FragmentActivity) {
-
-        itemsDB = ItemsDB.getInstance(activity.applicationContext)
 
         val itemWhat = find_item_et.text.toString().trim()
         val itemWhere = itemsDB.getWhere(itemWhat)
@@ -38,20 +35,20 @@ class FindItemVM : ViewModel() {
     }
 
     fun onAddItemButtonClicked() {
-        _navigateToAddItem.value = true
+        _uiState.value = true
     }
 
     fun onDeleteItemButtonClicked() {
-        _navigateToDeleteItem.value = true
+        _uiState.value = true
     }
 
     // Reset event after navigation is handled
     fun onNavigationHandled() {
-        _navigateToAddItem.value = false
-        _navigateToDeleteItem.value = false
+        _uiState.value = false
     }
 
     private fun showToast(activity: FragmentActivity, message: CharSequence) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
+
 }

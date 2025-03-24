@@ -4,27 +4,35 @@ import android.content.Context
 import androidx.lifecycle.Observer
 import java.io.BufferedReader
 
-class ItemsDB private constructor(context: Context) {
+class ItemsDB private constructor() {
 
     //handling files
     private val itemsMap: MutableMap<String, String> = mutableMapOf()
-
-    private var observers: MutableList<Observer<Any>> = mutableListOf()
 
     //Singleton pattern
     companion object {
         @Volatile
         private var sItemsDB: ItemsDB? = null
+        private var context: Context? = null
 
-        fun getInstance(context: Context) =
-            sItemsDB ?: synchronized(this){
-                sItemsDB ?: ItemsDB(context).also { sItemsDB = it }
+        fun setContext(ctx: Context) {
+            context = ctx
+        }
+
+        fun getInstance(): ItemsDB {
+            if(sItemsDB == null){
+                sItemsDB = ItemsDB()
             }
+            return sItemsDB!!
+        }
     }
 
 
+
     //Constructor
-    init { fillItemsDB(context,"garbage.txt") }
+    init {
+        fillItemsDB(context!!,"garbage.txt")
+    }
 
     fun listItems(): String {
         var r = ""
@@ -40,7 +48,6 @@ class ItemsDB private constructor(context: Context) {
 
     fun addItem(what: String, where: String) {
         itemsMap[what] = where
-        updateData()
     }
 
     fun removeItem(what: String){
@@ -62,17 +69,6 @@ class ItemsDB private constructor(context: Context) {
             }
         }
         catch (e: Exception) { }
-    }
-
-    fun addObserver (observer : Observer<Any>) {
-        observers.add(observer)
-    }
-
-    fun updateData () {
-        for (observer in observers){
-            observer.onChanged("")
-        }
-
     }
 
 }

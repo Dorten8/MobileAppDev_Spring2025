@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 
 class DeleteItemActivity : AppCompatActivity() {
 
-    private lateinit var itemsDB: ItemsDB
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_delete_item_container)
-        itemsDB = ItemsDB.getInstance(this)
         setUpFragments()
     }
 

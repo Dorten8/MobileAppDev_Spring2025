@@ -1,19 +1,20 @@
 package dk.itu.garbagev6_2025_kotlin
 
-import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AddItemVM : ViewModel() {
 
-    private lateinit var itemsDB: ItemsDB
+    private var itemsDB: ItemsDB = ItemsDB.getInstance()
+
+    val uiState: MutableLiveData<GarbageUiState> = MutableLiveData<GarbageUiState>(GarbageUiState(itemsDB.listItems()))
 
     fun onAddItemButtonClick(add_item_what_et: EditText, add_item_where_et: EditText, activity: FragmentActivity){
 
-        itemsDB = ItemsDB.getInstance(activity.applicationContext)
+        //itemsDB = ItemsDB.getInstance(activity.applicationContext)
 
         val itemWhat = add_item_what_et.text.toString().trim()
         val itemWhere = add_item_where_et.text.toString().trim()
@@ -22,6 +23,7 @@ class AddItemVM : ViewModel() {
             "${activity.getString(R.string.empty_toast)} in both fields"
         } else {
             itemsDB.addItem(itemWhat, itemWhere)
+            uiState.value = GarbageUiState(itemsDB.listItems())
             add_item_what_et.text.clear()
             add_item_where_et.text.clear()
             "${activity.getString(R.string.add_item_notification)}"
@@ -33,5 +35,9 @@ class AddItemVM : ViewModel() {
     private fun showToast(activity: FragmentActivity, message: CharSequence) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
+
+    data class GarbageUiState(
+        val listItems: String
+    )
 
 }

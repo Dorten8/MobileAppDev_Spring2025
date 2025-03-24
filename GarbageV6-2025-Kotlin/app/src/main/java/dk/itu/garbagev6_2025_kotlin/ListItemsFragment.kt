@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 class ListItemsFragment: Fragment() {
@@ -25,14 +24,20 @@ class ListItemsFragment: Fragment() {
 
         val listThings: TextView = v.findViewById(R.id.list_items_tw)
 
+        /*
         activity?.let { fragmentActivity ->
             viewModel.onListItemsTextViewDisplay(
                 listThings,
                 fragmentActivity
             )
         }
+         */
+
+        viewModel.uiState.observe(viewLifecycleOwner){
+        uiState -> listThings.text = "Garbage sorting list: " + uiState.listItems
+        }
 
         return v
-    }
+}
 
 }

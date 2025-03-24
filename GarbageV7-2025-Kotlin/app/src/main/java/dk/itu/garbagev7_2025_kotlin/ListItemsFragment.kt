@@ -24,9 +24,16 @@ class ListItemsFragment: Fragment() {
 
         val listItemViewModel = ViewModelProvider(requireActivity())[ListItemsVM::class.java]
 
+        // Set up recyclerview
+
         val listThings: RecyclerView = v.findViewById(R.id.list_items_rv)
+
         listThings.layoutManager = LinearLayoutManager(activity)
+
         val mAdapter = ItemAdapter(listItemViewModel)
+        listThings.adapter = mAdapter
+
+        listItemViewModel.uiState.observe(viewLifecycleOwner) { mAdapter.notifyDataSetChanged() }
 
         activity?.let { fragmentActivity ->
             listItemViewModel.onListItemsTextViewDisplay(
@@ -38,36 +45,38 @@ class ListItemsFragment: Fragment() {
         return v
     }
 
-    private inner class ItemHolder (itemView: View, deleteItemVM: DeleteItemVM) :
-        RecyclerView.ViewHolder(itemView) {
-        private val mWhatTextView: TextView = itemView.findViewById(R.id.item_what)
-        private val mWhereTextView: TextView = itemView.findViewById(R.id.item_where)
-        private val mNumberView: TextView = itemView.findViewById(R.id.item_number)
+    private inner class ItemHolder (itemView: View, deleteItemVM: DeleteItemVM) : RecyclerView.ViewHolder(itemView) {
+
+        private val mWhatTextView: TextView
+        private val mWhereTextView: TextView
+        private val mNumberView: TextView
         private val viewModel = deleteItemVM
 
         init {
+            mNumberView = itemView.findViewById(R.id.item_what)
+            mWhatTextView = itemView.findViewById(R.id.item_what)
+            mWhereTextView = itemView.findViewById(R.id.item_where)
             itemView.setOnClickListener(this)
         }
 
-        fun bind(item: String, position: Int) {
+        fun bind(item_what: String, item_where: String, position: Int) {
             mNumberView.text = " $position "
-            mWhatTextView.text = item.what // item.what does not work because we do not have item class or object
-            mWhereTextView.text = item.where
-            }
-        override fun onClick(v: View) {
-            val what = (v.findViewById<View>(R.id.item_what) as TextView).text.
-            viewModel.onDeleteItemButtonClick(what, activity)
-            }
-            viewModel.onDeleteItemButtonClicked
-
+            mWhatTextView.text = item_what
+            mWhereTextView.text = item_where
         }
 
+        override fun onClick(v: View) {
+            val what = (v.findViewById<View>(R.id.item_what) as TextView).text as String
 
+            activity?.let { fragmentActivity ->
+                viewModel.onDeleteItemButtonClick(what, fragmentActivity)
+            }
+        }
     }
 
-    private inner class ItemAdapter(listItemViewModel:ListItemsVM) :
-        RecyclerView.Adapter<ItemHolder>() {
-            private val viewModel = listItemViewModel
+    private inner class ItemAdapter(listItemViewModel: ListItemsVM) : RecyclerView.Adapter<ItemHolder>() {
+
+        private val viewModel = listItemViewModel
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
             val layoutInflater = LayoutInflater.from(activity)
@@ -83,9 +92,5 @@ class ListItemsFragment: Fragment() {
         override fun getItemCount(): Int {
             return viewModel.uiState.value!!.listItemVMSize
         }
-
-
-
-}
-
+    }
 }

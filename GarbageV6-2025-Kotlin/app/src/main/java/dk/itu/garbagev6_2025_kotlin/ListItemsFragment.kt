@@ -20,7 +20,7 @@ class ListItemsFragment: Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_list_items, container, false)
 
-        val viewModel = ViewModelProvider(requireActivity())[ListItemsVM::class.java]
+        val viewModel = ViewModelProvider(requireActivity())[SharedItemsVM::class.java]
 
         val listThings: TextView = v.findViewById(R.id.list_items_tw)
 
@@ -33,8 +33,8 @@ class ListItemsFragment: Fragment() {
         }
          */
 
-        viewModel.uiState.observe(viewLifecycleOwner){
-        uiState -> listThings.text = "Garbage sorting list: " + uiState.listItems
+        viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
+            listThings.text = "Garbage sorting list: " + uiState.listItems
         }
 
         return v

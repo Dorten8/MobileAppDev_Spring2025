@@ -24,20 +24,18 @@ class DeleteItemFragment: Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_delete_item, container, false)
 
-        val viewModel = ViewModelProvider(requireActivity())[DeleteItemVM::class.java]
+        val viewModel = ViewModelProvider(requireActivity())[SharedItemsVM::class.java]
 
         val deleteItemButton: Button = v.findViewById(R.id.delete_item_bt)
 
         val deleteItemEditText: EditText = v.findViewById(R.id.delete_item_et)
 
-        deleteItemButton.setOnClickListener{
-            activity?.let { fragmentActivity ->
-                viewModel.onDeleteItemButtonClick(
-                    deleteItemEditText,
-                    fragmentActivity
-                )
-            }
+        deleteItemButton.setOnClickListener {
+            val msg = viewModel.deleteItem(deleteItemEditText.text.toString().trim(), requireContext())
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+            deleteItemEditText.text.clear()
         }
+
         return v
     }
 }

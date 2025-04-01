@@ -21,7 +21,7 @@ class FindItemFragment: Fragment() {
 
         val v = inflater.inflate(R.layout.fragment_find_item, container, false)
 
-        val viewModel = ViewModelProvider(requireActivity())[FindItemVM::class.java]
+        val viewModel = ViewModelProvider(requireActivity())[SharedItemsVM::class.java]
 
         val findItemButton: Button = v.findViewById(R.id.find_item_bt)
         val addItemButton: Button = v.findViewById(R.id.find_add_item_bt)

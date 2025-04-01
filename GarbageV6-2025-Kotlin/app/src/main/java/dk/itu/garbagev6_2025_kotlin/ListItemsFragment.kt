@@ -24,20 +24,10 @@ class ListItemsFragment: Fragment() {
 
         val listThings: TextView = v.findViewById(R.id.list_items_tw)
 
-        /*
-        activity?.let { fragmentActivity ->
-            viewModel.onListItemsTextViewDisplay(
-                listThings,
-                fragmentActivity
-            )
-        }
-         */
-
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            listThings.text = "Garbage sorting list: " + uiState.listItems
+            listThings.text = "Garbage sorting list: \n\n" + uiState.listItems
         }
 
         return v
-}
-
+    }
 }

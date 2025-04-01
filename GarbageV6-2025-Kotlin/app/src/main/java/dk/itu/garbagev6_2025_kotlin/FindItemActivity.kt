@@ -18,6 +18,7 @@ class FindItemActivity : AppCompatActivity() {
 
     private fun setUpFragments() {
         val fm = supportFragmentManager
+
         var fragmentFindItem: Fragment? = fm.findFragmentById(R.id.fragment_find_item_container)
         var fragmentListItems: Fragment? = fm.findFragmentById(R.id.fragment_list_items_container)
 

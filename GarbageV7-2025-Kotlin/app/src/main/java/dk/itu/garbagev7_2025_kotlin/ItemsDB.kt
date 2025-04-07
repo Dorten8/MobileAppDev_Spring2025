@@ -4,79 +4,69 @@ import android.content.Context
 import androidx.lifecycle.Observer
 import java.io.BufferedReader
 
-class ItemsDB private constructor(context: Context) {
+class ItemsDB private constructor() {
 
     //handling files
-    private val itemsMap: MutableMap<String, String> = mutableMapOf()
-
-    private var observers: MutableList<Observer<Any>> = mutableListOf()
+    val items = ArrayList<Item>()
 
     //Singleton pattern
     companion object {
         @Volatile
         private var sItemsDB: ItemsDB? = null
+        private var context: Context? = null
 
-        fun getInstance(context: Context) =
-            sItemsDB ?: synchronized(this){
-                sItemsDB ?: ItemsDB(context).also { sItemsDB = it }
+        fun setContext(ctx: Context) {
+            context = ctx
+        }
+
+        fun getInstance(): ItemsDB {
+            if(sItemsDB == null){
+                sItemsDB = ItemsDB()
             }
+            return sItemsDB!!
+        }
     }
-
 
     //Constructor
-    init { fillItemsDB(context,"garbage.txt") }
+    init { fillItemsDB(context!!,"garbage.txt") }
 
-    fun getItemsMap(): MutableMap<String, String> {
-        return itemsMap
+    //ADD
+    fun addItem(what: String, where: String) {
+        items.add(Item(what, where))
     }
 
-    fun listItems(): String {
-        var r = ""
-        for ((key, value) in itemsMap) {
-            r += "Put $key: in $value container\n "
-        }
-        return r
+    //DELETE
+    fun removeItem(what: String, where: String) {
+        items.removeIf { it.what == what && it.where == where }
+    }
+
+
+    fun size(): Int {
+        return items.size
     }
 
     fun getWhere(what: String): String {
-        return itemsMap[what] ?: "Not found"
-    }
-
-    fun addItem(what: String, where: String) {
-        itemsMap[what] = where
-        updateData()
-    }
-
-    fun removeItem(what: String){
-        itemsMap.remove(what)
+        for (item in items)
+            if (item.what == what) return item.where
+        return "not found"
     }
 
     fun isPresent(what: String): Boolean {
-        return itemsMap[what] != null
+        return getWhere(what) != "not found"
     }
 
     private fun fillItemsDB(context: Context, fileName: String) {
         try {
-            val inputStream = context.assets.open(fileName)
             val bufferedReader = BufferedReader(context.assets.open(fileName).reader())
             bufferedReader.useLines {
-                lines -> lines.forEach {
+                    lines -> lines.forEach {
                     line -> addItem(line.split(", ")[0].trim(), line.split(", ")[1].trim())
-                }
+            }
             }
         }
         catch (e: Exception) { }
     }
 
-    fun addObserver (observer : Observer<Any>) {
-        observers.add(observer)
-    }
 
-    fun updateData () {
-        for (observer in observers){
-            observer.onChanged("")
-        }
-
-    }
 
 }

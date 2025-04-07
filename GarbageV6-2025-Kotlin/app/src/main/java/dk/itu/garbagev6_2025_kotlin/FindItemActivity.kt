@@ -7,8 +7,6 @@ import dk.itu.garbagev6_2025_kotlin.ItemsDB.Companion.setContext
 
 class FindItemActivity : AppCompatActivity() {
 
-    //private var itemsDB: ItemsDB = ItemsDB.getInstance()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_item_container)

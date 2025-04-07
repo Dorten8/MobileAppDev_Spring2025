@@ -60,7 +60,6 @@ class ItemsDB private constructor() {
 
     private fun fillItemsDB(context: Context, fileName: String) {
         try {
-            val inputStream = context.assets.open(fileName)
             val bufferedReader = BufferedReader(context.assets.open(fileName).reader())
             bufferedReader.useLines {
                 lines -> lines.forEach {
